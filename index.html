@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozy Comforts Tiny Homes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+        header {
+            background-image: url('https://via.placeholder.com/1200x400');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .filters {
+            background-color: #e9e9e9;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .home-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .home-card {
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .home-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .home-card-content {
+            padding: 15px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Cozy Comforts Tiny Homes</h1>
+            <p>Experience compact living in homes under 60 sq m</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#rentals">Rentals</a></li>
+            <li><a href="#buy">Buy</a></li>
+            <li><a href="#about">About Us</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="rentals">
+            <h2>Available Tiny Home Models</h2>
+            <p>Discover the perfect tiny home for your lifestyle. All our models are under 60 sq m, combining comfort and efficiency.</p>
+            
+            <div class="filters">
+                <label for="size">Size:</label>
+                <select id="size">
+                    <option value="all">All Sizes</option>
+                    <option value="20-30">20-30 sq m</option>
+                    <option value="31-45">31-45 sq m</option>
+                    <option value="46-60">46-60 sq m</option>
+                </select>
+
+                <label for="price">Max Price:</label>
+                <input type="number" id="price" placeholder="Enter max price">
+
+                <button class="btn">Apply Filters</button>
+            </div>
+
+            <div class="home-grid">
+                <div class="home-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Micro Studio">
+                    <div class="home-card-content">
+                        <h3>Micro Studio</h3>
+                        <p>A cozy 25 sq m studio perfect for minimalist living.</p>
+                        <p>Price: $50,000</p>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+                <div class="home-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Compact One-Bedroom">
+                    <div class="home-card-content">
+                        <h3>Compact One-Bedroom</h3>
+                        <p>Efficient 40 sq m home with separate bedroom.</p>
+                        <p>Price: $75,000</p>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+                <div class="home-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Family Tiny Home">
+                    <div class="home-card-content">
+                        <h3>Family Tiny Home</h3>
+                        <p>Spacious 58 sq m design with two bedrooms.</p>
+                        <p>Price: $95,000</p>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // You can add JavaScript here for interactivity
+    </script>
+</body>
+</html>
