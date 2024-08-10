@@ -77,57 +77,52 @@
             text-decoration: none;
             border-radius: 5px;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+        }
     </style>
-    .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-form input, form select {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-#result {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #f0f0f0;
-    border-radius: 4px;
-}
 </head>
 <body>
     <header>
@@ -136,9 +131,9 @@ form input, form select {
             <p>Experience compact living in homes under 60 sq m</p>
         </div>
     </header>
- <div class="container">
-    <button id="openLeadForm" class="btn">Calculate ROI & Get Cost Estimate</button>
-</div>      
+    <div class="container">
+        <button id="openLeadForm" class="btn">Calculate ROI & Get Cost Estimate</button>
+    </div>      
     <nav>
         <ul>
             <li><a href="#home">Home</a></li>
@@ -200,89 +195,87 @@ form input, form select {
         </section>
     </div>
 
-    <script>
-        // You can add JavaScript here for interactivity
-    </script>
     <div id="leadFormModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Calculate ROI & Get Cost Estimate</h2>
-        <form id="leadForm">
-            <input type="text" id="name" placeholder="Your Name" required>
-            <input type="email" id="email" placeholder="Your Email" required>
-            <input type="number" id="investment" placeholder="Initial Investment ($)" required>
-            <input type="number" id="annualSavings" placeholder="Estimated Annual Savings ($)" required>
-            <select id="modelType" required>
-                <option value="">Select Home Model</option>
-                <option value="micro">Micro Studio</option>
-                <option value="compact">Compact Two-Bedroom</option>
-                <option value="family">Family Tiny Home</option>
-            </select>
-            <button type="submit" class="btn">Calculate</button>
-        </form>
-        <div id="result" style="display:none;">
-            <h3>Results</h3>
-            <p id="roiResult"></p>
-            <p id="costEstimate"></p>
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Calculate ROI & Get Cost Estimate</h2>
+            <form id="leadForm">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+                <input type="number" id="investment" placeholder="Initial Investment ($)" required>
+                <input type="number" id="annualSavings" placeholder="Estimated Annual Savings ($)" required>
+                <select id="modelType" required>
+                    <option value="">Select Home Model</option>
+                    <option value="micro">Micro Studio</option>
+                    <option value="compact">Compact Two-Bedroom</option>
+                    <option value="family">Family Tiny Home</option>
+                </select>
+                <button type="submit" class="btn">Calculate</button>
+            </form>
+            <div id="result" style="display:none;">
+                <h3>Results</h3>
+                <p id="roiResult"></p>
+                <p id="costEstimate"></p>
+            </div>
         </div>
     </div>
-</div>
+
     <script>
-    var modal = document.getElementById("leadFormModal");
-    var btn = document.getElementById("openLeadForm");
-    var span = document.getElementsByClassName("close")[0];
-    var form = document.getElementById("leadForm");
-    var result = document.getElementById("result");
+        var modal = document.getElementById("leadFormModal");
+        var btn = document.getElementById("openLeadForm");
+        var span = document.getElementsByClassName("close")[0];
+        var form = document.getElementById("leadForm");
+        var result = document.getElementById("result");
 
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
 
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
+        span.onclick = function() {
             modal.style.display = "none";
         }
-    }
 
-    form.onsubmit = function(e) {
-        e.preventDefault();
-        var investment = parseFloat(document.getElementById("investment").value);
-        var annualSavings = parseFloat(document.getElementById("annualSavings").value);
-        var modelType = document.getElementById("modelType").value;
-
-        var roi = (annualSavings / investment * 100).toFixed(2);
-        var costEstimate;
-        switch(modelType) {
-            case "micro":
-                costEstimate = 50000;
-                break;
-            case "compact":
-                costEstimate = 75000;
-                break;
-            case "family":
-                costEstimate = 95000;
-                break;
-            default:
-                costEstimate = 0;
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
         }
 
-        document.getElementById("roiResult").textContent = `Estimated ROI: ${roi}%`;
-        document.getElementById("costEstimate").textContent = `Estimated Cost: $${costEstimate}`;
-        result.style.display = "block";
+        form.onsubmit = function(e) {
+            e.preventDefault();
+            var investment = parseFloat(document.getElementById("investment").value);
+            var annualSavings = parseFloat(document.getElementById("annualSavings").value);
+            var modelType = document.getElementById("modelType").value;
 
-        // Here you would typically send the form data to your server
-        console.log("Form submitted:", {
-            name: document.getElementById("name").value,
-            email: document.getElementById("email").value,
-            investment: investment,
-            annualSavings: annualSavings,
-            modelType: modelType
-        });
-    }
-</script>
+            var roi = (annualSavings / investment * 100).toFixed(2);
+            var costEstimate;
+            switch(modelType) {
+                case "micro":
+                    costEstimate = 50000;
+                    break;
+                case "compact":
+                    costEstimate = 75000;
+                    break;
+                case "family":
+                    costEstimate = 95000;
+                    break;
+                default:
+                    costEstimate = 0;
+            }
+
+            document.getElementById("roiResult").textContent = `Estimated ROI: ${roi}%`;
+            document.getElementById("costEstimate").textContent = `Estimated Cost: $${costEstimate}`;
+            result.style.display = "block";
+
+            // Here you would typically send the form data to your server
+            console.log("Form submitted:", {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                investment: investment,
+                annualSavings: annualSavings,
+                modelType: modelType
+            });
+        }
+    </script>
 </body>
 </html>
